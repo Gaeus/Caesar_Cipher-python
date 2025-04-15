@@ -8,6 +8,12 @@ alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n'
 
 def caesar(original_text, shift_amount, encode_or_decode):
     output_text = ""
+
+    if encode_or_decode == "d" :
+        encode_or_decode = "decode"
+    else:
+        encode_or_decode = "encode"
+
     if encode_or_decode == "decode":
         shift_amount *= -1
 
@@ -25,12 +31,24 @@ def caesar(original_text, shift_amount, encode_or_decode):
 should_continue = True
 
 while should_continue:
-    direction = input("Type 'encode' to encrypt, type 'decode' to decrypt:\n").lower()
+    while True :
+        direction = input("Type 'encode' to encrypt, type 'decode' to decrypt:\n").lower()
+        if direction in ["encode","e","decode","d"]:
+            break
+        else:
+            print("Invalid input. use 'encode' or 'decode' you can also use 'e' or 'n':\n")
     text = input("Type your message:\n").lower()
     shift = int(input("Type the shift number:\n"))
     caesar(original_text=text, shift_amount=shift, encode_or_decode=direction)
 
-    restart = input("Type 'yes' if you want to go again. Otherwise, type 'no'.\n").lower()
-    if restart == "no":
-        should_continue = False
-        print("Goodbye!")
+    while True:
+        restart = input("Type 'y' if you want to go again. Otherwise, type 'n'.\n").lower()
+        if restart == "n":
+            should_continue = False
+            print("Goodbye!")
+            break
+        if restart == "y":
+            print("Restarting...")
+            break
+        else :
+            print("Invalid input. Please type 'y' or 'n'.\n")
